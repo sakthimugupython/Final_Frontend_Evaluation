@@ -1,50 +1,94 @@
+/* Subtle gradient background */
 body {
-    background-color: #d1ecd2;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e9f7ea 0%, #cfe9d1 100%);
 }
 
-.card {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Card appearance */
+.app-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(22, 60, 29, 0.12);
+    backdrop-filter: blur(4px);
 }
 
+/* Header styling */
 .card-header {
-    background-color: #9ed2a0 !important;
-    border-bottom: 2px solid #7fb582;
+    background: linear-gradient(135deg, #7fc886, #59b36a) !important;
+    border-bottom: none;
 }
 
+/* Input focus styles */
+#taskInput.form-control:focus {
+    border-color: #8ccf95;
+    box-shadow: 0 0 0 0.2rem rgba(123, 200, 132, 0.25);
+}
+
+/* List items with subtle animation */
 .list-group-item {
-    background-color: white;
-    border-left: 4px solid #9ed2a0;
-    margin-bottom: 5px;
-    transition: all 0.3s ease;
-}
-
-.list-group-item:hover {
-    background-color: #f8fff8;
-}
-
-.completed {
-    text-decoration: line-through;
-    color: #6c757d;
-}
-
-.task-item {
+    background-color: #ffffff;
+    border: none;
+    border-left: 5px solid #8ccf95;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 0.75rem 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    transform: translateY(6px);
+    opacity: 0;
+    animation: itemIn 320ms ease-out forwards;
+}
+
+@keyframes itemIn {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.list-group-item:hover {
+    background-color: #f6fff7;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Completed state */
+.completed {
+    text-decoration: line-through;
+    color: #8a9491;
 }
 
 .task-text {
     flex-grow: 1;
     margin-right: 10px;
+    word-break: break-word;
 }
 
 .button-container {
     display: flex;
-    gap: 5px;
+    gap: 6px;
 }
 
-.complete-btn,
+/* Buttons */
+.complete-btn {
+    background-color: #7fc886;
+    color: #ffffff;
+    border: none;
+}
+.complete-btn:hover {
+    background-color: #6bb574;
+}
 .delete-btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+    opacity: 0.95;
+}
+
+/* Empty state */
+.empty-state {
+    display: none;
+}
+
+/* Utility */
+#taskCount {
+    background-color: #e8f6ea !important;
 }

@@ -8,9 +8,9 @@
   background-color: white;
 }
 
-/* Navbar Styles */
+/* Navbar: keep as-is */
 .navbar {
-  background-color: #2e7d32 !important;
+  background-color: #2e7d32;
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(46, 125, 50, 0.2);
   width: 100%;
@@ -20,65 +20,41 @@
   z-index: 1000;
 }
 
-.navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.5) !important;
-}
-
-.navbar-toggler:focus {
-  box-shadow: none !important;
-}
-
-/* Nav Link Animation Styles */
+/* Minimal nav-link styling: only active color + hover underline */
 .nav-link {
   position: relative;
-  padding: 0.5rem 1rem !important;
-  margin: 0 0.5rem;
-  color: white !important;
-  transition: color 0.3s ease !important;
+  color: #ffffff;            /* default white text */
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease;
 }
 
-.nav-link::before {
+/* Underline on hover */
+.nav-link::after {
   content: '';
   position: absolute;
-  bottom: 0;
   left: 0;
-  width: 100%;
+  bottom: -2px;
+  width: 0;
   height: 2px;
-  background-color: #76ff03;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+  background-color: #76ff03; /* lime green */
+  box-shadow: 0 0 8px rgba(118, 255, 3, 0.5);
+  transition: width 0.3s ease;
 }
 
-.nav-link:hover::before,
-.nav-link.active::before {
-  transform: scaleX(1);
-  transform-origin: left;
+.nav-link:hover::after {
+  width: 100%;
 }
 
-.nav-link:hover {
-  color: #76ff03 !important;
-}
-
+/* Active link color only */
 .nav-link.active {
-  color: #76ff03 !important;
-  font-weight: 500;
+  color: #76ff03 !important; /* lime green */
 }
 
-/* Logo Styles */
-.navbar-brand {
-  color: white !important;
-  transition: transform 0.3s ease;
-}
-
-.navbar-brand:hover {
-  color: #76ff03 !important;
-  transform: translateY(-1px);
-}
-
+/* Content area */
 .content {
   padding: 2rem;
-  margin-top: 5rem;
+  margin-top: 5rem; /* account for fixed navbar */
   color: #2e7d32;
   max-width: 1200px;
   margin-left: auto;
@@ -91,22 +67,7 @@
   text-shadow: 1px 1px 0 rgba(118, 255, 3, 0.1);
 }
 
-/* Responsive Styles */
-@media (max-width: 991.98px) {
-  .nav-link {
-    margin: 0.5rem 0;
-  }
-  
-  .nav-link::before {
-    width: 100px;
-  }
-}
-
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

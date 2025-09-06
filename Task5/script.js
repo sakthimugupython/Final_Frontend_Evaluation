@@ -1,4 +1,7 @@
-document.getElementById('registerForm').addEventListener('submit', function(e) {
+// Form validation
+const formEl = document.getElementById('registerForm');
+if (formEl) {
+  formEl.addEventListener('submit', function(e) {
     e.preventDefault();
     let valid = true;
 
@@ -22,39 +25,61 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
 
     // Name validation
     if (!name.value.trim()) {
-        nameError.textContent = 'Name is required';
-        valid = false;
+      nameError.textContent = 'Name is required';
+      valid = false;
     }
 
     // Email validation
     if (!email.value.trim()) {
-        emailError.textContent = 'Email is required';
-        valid = false;
+      emailError.textContent = 'Email is required';
+      valid = false;
     } else {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email.value)) {
-            emailError.textContent = 'Please enter a valid email address';
-            valid = false;
-        }
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email.value)) {
+        emailError.textContent = 'Please enter a valid email address';
+        valid = false;
+      }
     }
 
     // Password validation
     if (!password.value) {
-        passwordError.textContent = 'Password is required';
-        valid = false;
+      passwordError.textContent = 'Password is required';
+      valid = false;
     }
 
     // Confirm Password validation
     if (!confirmPassword.value) {
-        confirmPasswordError.textContent = 'Please confirm your password';
-        valid = false;
+      confirmPasswordError.textContent = 'Please confirm your password';
+      valid = false;
     } else if (password.value !== confirmPassword.value) {
-        confirmPasswordError.textContent = 'Passwords do not match';
-        valid = false;
+      confirmPasswordError.textContent = 'Passwords do not match';
+      valid = false;
     }
 
     // If all validations pass, you can submit the form
     if (valid) {
-        this.submit();
+      this.submit();
     }
-});
+  });
+}
+
+// Password visibility toggles
+function attachToggle(btnId, inputId) {
+  const btn = document.getElementById(btnId);
+  const input = document.getElementById(inputId);
+  if (!btn || !input) return;
+
+  btn.addEventListener('click', () => {
+    const isPassword = input.getAttribute('type') === 'password';
+    input.setAttribute('type', isPassword ? 'text' : 'password');
+    const icon = btn.querySelector('i');
+    if (icon) {
+      icon.classList.toggle('bi-eye');
+      icon.classList.toggle('bi-eye-slash');
+    }
+    input.focus();
+  });
+}
+
+attachToggle('togglePassword', 'password');
+attachToggle('toggleConfirmPassword', 'confirmPassword');

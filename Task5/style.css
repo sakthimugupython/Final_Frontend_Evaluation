@@ -1,10 +1,101 @@
-body {
-    background-color: #f8f9fa;
+/* Global styles */
+:root {
+  --primary-start: #6366f1; /* indigo-500 */
+  --primary-end: #8b5cf6;   /* violet-500 */
+  --accent: #ec4899;        /* pink-500 */
 }
-.container {
-    max-width: 400px;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  color: #111827; 
+  background:
+    radial-gradient(1200px 800px at -10% -10%, rgba(99,102,241,0.25), transparent 40%),
+    radial-gradient(900px 600px at 110% 10%, rgba(236,72,153,0.25), transparent 42%),
+    linear-gradient(135deg, #0f172a 0%, #111827 60%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  animation: fadeInUp .6s ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.form-title { font-weight: 700; letter-spacing: -0.3px; }
+
+.brand-icon {
+  width: 64px; height: 64px; font-size: 28px;
+}
+
+.input-group-text {
+  background: #f3f4f6; /* gray-100 */
+  border: 1px solid #e5e7eb; /* gray-200 */
+  border-right: none;
+}
+
+.input-group .form-control {
+  border: 1px solid #e5e7eb;
+  border-left: none;
+  height: 52px;
+}
+
+.form-control:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 0.2rem rgba(99,102,241,0.25);
+}
+
+/* Toggle password buttons */
+.input-group .btn {
+  border: 1px solid #e5e7eb;
+  border-left: none;
+}
+
+.input-group .btn:hover { background: #f9fafb; }
+
+/* Primary gradient button */
+.btn-gradient {
+  --g: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+  background-image: var(--g);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 1.25rem;
+  box-shadow: 0 10px 24px rgba(99,102,241,0.35), 0 4px 12px rgba(139,92,246,0.2);
+  transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
+}
+
+.btn-gradient:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(99,102,241,0.4), 0 6px 16px rgba(139,92,246,0.25);
+}
+
+.btn-gradient:active { transform: translateY(0); }
+
+/* Links */
+.a, a { color: var(--primary-start); }
+.a:hover, a:hover { color: var(--accent); }
+
+/* Spacing tweaks */
+label.form-label { font-weight: 600; }
+
+/* Safe fallback for very small screens */
+@media (max-width: 380px) {
+  .brand-icon { width: 56px; height: 56px; font-size: 24px; }
+  .auth-card { padding: 1.25rem !important; }
 }

@@ -1,78 +1,149 @@
-body {
-    background: linear-gradient(135deg, #0f2027, #2c5364, #232526, #1a2980);
-    min-height: 100vh;
+:root {
+  --primary: #ff2ef1; /* pink */
+  --accent: #7a7cff;  /* purple */
+  --bg1: #0d0b1f;
+  --bg2: #2a1551;
+  --bg3: #1b0f3a;
+  --bg4: #381d6a;
+  --text: #f8eaff;
+}
+* {
+  box-sizing: border-box;
 }
 
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3), var(--bg4));
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Wrapper */
+.clock-wrap {
+  width: min(92vw, 820px);
+  padding: 24px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  box-shadow: 0 12px 60px rgba(0,0,0,0.35), inset 0 0 40px rgba(255,255,255,0.04);
+  backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.brand {
+  font-family: 'Orbitron', monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-shadow: 0 0 8px rgba(255,255,255,0.25);
+}
+
+/* Clock face */
 .neon-clock {
-    color: #39ff14;
-    text-shadow:
-      0 0 8px #39ff14,
-      0 0 16px #39ff14,
-      0 0 32px #00fff7,
-      0 0 64px #39ff14,
-      0 0 128px #00fff7;
-    letter-spacing: 0.12em;
-    border-radius: 13px;
-    padding: 16px 32px;
-    background: rgba(30, 30, 30, 0.7);
-    box-shadow: 0 2px 24px 4px #39ff14cc, 0 1px 16px 2px #00fff7aa;
-    font-family: 'Orbitron', 'Courier New', Courier, monospace;
-    position: relative;
-    border: 1.5px solid #39ff14;
-    overflow: hidden;
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  color: var(--primary);
+  text-shadow:
+    0 0 8px var(--primary),
+    0 0 18px var(--primary),
+    0 0 28px var(--accent),
+    0 0 46px var(--primary),
+    0 0 86px var(--accent);
+  letter-spacing: 0.06em; /* tighter to avoid overflow */
+  border-radius: 16px;
+  padding: 18px 36px;
+  background: rgba(20, 20, 26, 0.55);
+  box-shadow: 0 2px 28px 4px color-mix(in oklab, var(--primary) 60%, black),
+              0 1px 18px 2px color-mix(in oklab, var(--accent) 50%, black);
+  font-family: 'Orbitron', 'Courier New', Courier, monospace;
+  position: relative;
+  border: 1.5px solid color-mix(in oklab, var(--primary) 70%, white);
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Control the headline size so it never overflows */
+.neon-clock.display-1 {
+  font-size: clamp(2rem, 12vw, 4.8rem);
+}
+
+/* subtle scanline/shine */
+.neon-clock::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 .neon-digit {
-    color: #39ff14;
-    text-shadow:
-      0 0 8px #39ff14,
-      0 0 16px #00fff7;
-    font-size: 1.4em;
-    font-weight: bold;
-    margin: 0 0.03em;
-    transition: color 0.3s;
+  color: var(--primary);
+  text-shadow:
+    0 0 8px var(--primary),
+    0 0 16px var(--accent);
+  font-size: 1.45em;
+  font-weight: 700;
+  margin: 0 0.04em;
+  transition: color 0.3s, transform 0.2s;
 }
 
 .neon-colon {
-    color: #00fff7;
-    text-shadow:
-      0 0 8px #00fff7,
-      0 0 16px #39ff14;
-    font-size: 1.1em;
-    margin: 0 0.03em;
+  color: var(--accent);
+  text-shadow:
+    0 0 8px var(--accent),
+    0 0 16px var(--primary);
+  font-size: 1.12em;
+  margin: 0 0.04em;
 }
 
 .ampm {
-    font-size: 0.7em;
-    color: #fff;
-    text-shadow:
-      0 0 6px #00fff7,
-      0 0 12px #39ff14;
-    margin-left: 0.4em;
-    vertical-align: middle;
-    font-weight: 600;
-    letter-spacing: 0.09em;
-    background: rgba(0,255,247,0.08);
-    border-radius: 5px;
-    padding: 2px 6px;
-    border: 1px solid #00fff7;
-    box-shadow: 0 0 5px #00fff7aa;
+  font-size: 0.72em;
+  color: #fff;
+  text-shadow:
+    0 0 6px var(--accent),
+    0 0 12px var(--primary);
+  margin-left: 0.5em;
+  vertical-align: middle;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  border-radius: 6px;
+  padding: 2px 8px;
+  border: 1px solid color-mix(in oklab, var(--accent) 60%, white);
+  box-shadow: 0 0 6px color-mix(in oklab, var(--accent) 60%, black);
 }
 
+/* Date row */
+.neon-date {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: color-mix(in oklab, var(--text) 92%, #9adbd3);
+  text-shadow: 0 0 6px rgba(255,255,255,0.22);
+}
+
+.controls .btn {
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+/* Hover animation */
+.neon-clock:hover .neon-digit { transform: translateY(-1px); }
+
+/* Responsive tweaks */
 @media (max-width: 600px) {
-    .neon-clock {
-        padding: 7px 2px;
-        font-size: 0.8em;
-    }
-    .neon-digit, .neon-colon {
-        font-size: 0.8em;
-    }
-    .ampm {
-        font-size: 0.6em;
-        padding: 1px 3px;
-    }
+  .clock-wrap { padding: 18px; }
+  .neon-clock {
+    padding: 10px 10px;
+    font-size: 0.9em;
+  }
+  .neon-digit, .neon-colon { font-size: 0.92em; }
+  .ampm { font-size: 0.66em; padding: 1px 6px; }
 }

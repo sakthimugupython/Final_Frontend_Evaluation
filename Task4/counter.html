@@ -11,12 +11,16 @@
     <div class="counter-container">
         <h1 class="title">Counter</h1>
         <div class="counter-value" id="counter">0</div>
-        <div class="btn-group" role="group">
-            <button class="btn btn-success" onclick="increment()">+</button>
-            <button class="btn btn-danger" onclick="decrement()">−</button>
-            <button class="btn btn-secondary" onclick="resetCounter()">Reset</button>
+        <div class="actions">
+            <div class="actions-top">
+                <button class="btn btn-success" onclick="increment()">+</button>
+                <button class="btn btn-danger" onclick="decrement()">−</button>
+            </div>
+            <div class="actions-bottom">
+                <button class="btn btn-secondary" onclick="resetCounter()">Reset</button>
+            </div>
         </div>
-        <div class="message" id="message"></div>
+        <div class="message" id="message" aria-live="polite"></div>
     </div>
     <script src="script.js"></script>
 </body>
