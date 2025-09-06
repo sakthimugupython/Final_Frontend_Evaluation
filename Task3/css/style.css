@@ -1,0 +1,50 @@
+body {
+    background-color: #d1ecd2;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #9ed2a0 !important;
+    border-bottom: 2px solid #7fb582;
+}
+
+.list-group-item {
+    background-color: white;
+    border-left: 4px solid #9ed2a0;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8fff8;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-text {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.button-container {
+    display: flex;
+    gap: 5px;
+}
+
+.complete-btn,
+.delete-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}

@@ -1,0 +1,78 @@
+body {
+    background: linear-gradient(135deg, #0f2027, #2c5364, #232526, #1a2980);
+    min-height: 100vh;
+}
+
+.neon-clock {
+    color: #39ff14;
+    text-shadow:
+      0 0 8px #39ff14,
+      0 0 16px #39ff14,
+      0 0 32px #00fff7,
+      0 0 64px #39ff14,
+      0 0 128px #00fff7;
+    letter-spacing: 0.12em;
+    border-radius: 13px;
+    padding: 16px 32px;
+    background: rgba(30, 30, 30, 0.7);
+    box-shadow: 0 2px 24px 4px #39ff14cc, 0 1px 16px 2px #00fff7aa;
+    font-family: 'Orbitron', 'Courier New', Courier, monospace;
+    position: relative;
+    border: 1.5px solid #39ff14;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.neon-digit {
+    color: #39ff14;
+    text-shadow:
+      0 0 8px #39ff14,
+      0 0 16px #00fff7;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0 0.03em;
+    transition: color 0.3s;
+}
+
+.neon-colon {
+    color: #00fff7;
+    text-shadow:
+      0 0 8px #00fff7,
+      0 0 16px #39ff14;
+    font-size: 1.1em;
+    margin: 0 0.03em;
+}
+
+.ampm {
+    font-size: 0.7em;
+    color: #fff;
+    text-shadow:
+      0 0 6px #00fff7,
+      0 0 12px #39ff14;
+    margin-left: 0.4em;
+    vertical-align: middle;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    background: rgba(0,255,247,0.08);
+    border-radius: 5px;
+    padding: 2px 6px;
+    border: 1px solid #00fff7;
+    box-shadow: 0 0 5px #00fff7aa;
+}
+
+@media (max-width: 600px) {
+    .neon-clock {
+        padding: 7px 2px;
+        font-size: 0.8em;
+    }
+    .neon-digit, .neon-colon {
+        font-size: 0.8em;
+    }
+    .ampm {
+        font-size: 0.6em;
+        padding: 1px 3px;
+    }
+}
